@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sources Hub Key</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --red:#ff1744;
+    --red2:#ff003c;
+    --black:#030303;
+    --card:#0b0b0e;
+    --white:#fff;
+    --gray:#85858d;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+
+    font-family:Poppins,sans-serif;
+    color:var(--white);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,0,55,.23),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(255,0,55,.12),
+            transparent 32%
+        ),
+        #030303;
+}
+
+
+/* ==============================
+   BACKGROUND
+============================== */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.glow{
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:rgba(255,0,55,.09);
+    filter:blur(110px);
+    animation:glowMove 10s ease-in-out infinite alternate;
+}
+
+.glow-one{
+    left:-230px;
+    top:-220px;
+}
+
+.glow-two{
+    right:-230px;
+    bottom:-240px;
+    animation-delay:3s;
+}
+
+@keyframes glowMove{
+    0%{
+        transform:translate(0,0) scale(1);
+    }
+    100%{
+        transform:translate(100px,70px) scale(1.35);
+    }
+}
+
+
+/* GRID */
+
+.grid{
+    position:absolute;
+    inset:-100px;
+    opacity:.13;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.05) 1px,
+            transparent 1px
+        );
+
+    background-size:55px 55px;
+
+    transform:
+        perspective(500px)
+        rotateX(60deg)
+        scale(1.5);
+
+    transform-origin:center bottom;
+
+    animation:gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+    from{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            scale(1.5)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            scale(1.5)
+            translateY(55px);
+    }
+}
+
+
+/* PARTICLES */
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+
+    background:var(--red);
+
+    box-shadow:
+        0 0 8px var(--red),
+        0 0 16px var(--red);
+
+    opacity:.35;
+
+    animation:
+        particleFloat
+        7s
+        ease-in-out
+        infinite;
+}
+
+.p1{left:7%;top:18%;animation-delay:0s}
+.p2{left:18%;top:72%;animation-delay:1s}
+.p3{left:29%;top:13%;animation-delay:2s}
+.p4{left:72%;top:22%;animation-delay:3s}
+.p5{left:84%;top:68%;animation-delay:1.5s}
+.p6{left:93%;top:34%;animation-delay:4s}
+.p7{left:55%;top:88%;animation-delay:2.5s}
+.p8{left:43%;top:8%;animation-delay:3.5s}
+.p9{left:12%;top:48%;animation-delay:4.5s}
+.p10{left:88%;top:48%;animation-delay:5s}
+
+@keyframes particleFloat{
+    0%,100%{
+        transform:translateY(0) scale(1);
+        opacity:.15;
+    }
+
+    50%{
+        transform:translateY(-45px) scale(2);
+        opacity:.8;
+    }
+}
+
+
+/* ==============================
+   MAIN CARD
+============================== */
+
+.wrapper{
+    position:relative;
+    z-index:20;
+    width:min(94%,570px);
+}
+
+.card{
+    position:relative;
+
+    padding:42px 34px 30px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22,22,25,.96),
+            rgba(5,5,7,.98)
+        );
+
+    border:1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.8),
+        0 0 70px rgba(255,0,55,.08),
+        inset 0 1px rgba(255,255,255,.07);
+
+    backdrop-filter:blur(25px);
+
+    overflow:hidden;
+
+    animation:cardAppear 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:8%;
+    right:8%;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--red),
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px var(--red),
+        0 0 40px rgba(255,23,68,.5);
+}
+
+.card::after{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-170px;
+    top:-170px;
+
+    border-radius:50%;
+
+    background:rgba(255,0,55,.09);
+
+    filter:blur(30px);
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:
+            translateY(40px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==============================
+   LOGO
+============================== */
+
+.logo-area{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:25px;
+}
+
+
+/*
+   LOGO S
+   Hoàn toàn thẳng đứng
+*/
+
+.logo{
+    position:relative;
+
+    width:108px;
+    height:108px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202025 0%,
+            #0a0a0c 55%,
+            #050505 100%
+        );
+
+    border:1px solid rgba(255,23,68,.65);
+
+    box-shadow:
+        0 0 0 7px rgba(255,23,68,.035),
+        0 0 30px rgba(255,23,68,.28),
+        0 0 70px rgba(255,23,68,.10),
+        inset 0 0 35px rgba(255,23,68,.08);
+
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+
+/* OUTER RING */
+
+.logo-ring{
+    position:absolute;
+
+    inset:-7px;
+
+    border-radius:34px;
+
+    border:1px solid rgba(255,23,68,.30);
+
+    border-top-color:rgba(255,23,68,.95);
+    border-right-color:transparent;
+
+    animation:logoRotate 4s linear infinite;
+}
+
+
+/* SECOND RING */
+
+.logo-ring-two{
+    position:absolute;
+
+    inset:-13px;
+
+    border-radius:39px;
+
+    border:1px solid rgba(255,23,68,.12);
+
+    border-bottom-color:rgba(255,23,68,.65);
+
+    animation:logoRotateReverse 7s linear infinite;
+}
+
+
+/* INNER GLOW */
+
+.logo::before{
+    content:"";
+
+    position:absolute;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:rgba(255,23,68,.10);
+
+    filter:blur(20px);
+}
+
+
+/*
+   CHỮ S
+   KHÔNG NGHIÊNG
+   KHÔNG ITALIC
+   KHÔNG SKEW
+*/
+
+.logo span{
+    position:relative;
+
+    z-index:5;
+
+    display:block;
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:60px;
+
+    font-weight:900;
+
+    font-style:normal;
+
+    line-height:1;
+
+    color:#ffffff;
+
+    /*
+       QUAN TRỌNG:
+       Không transform
+       Không rotate
+       Không skew
+    */
+    transform:none;
+
+    text-align:center;
+
+    letter-spacing:0;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 12px rgba(255,23,68,.95),
+        0 0 28px rgba(255,23,68,.85),
+        0 0 50px rgba(255,23,68,.40);
+}
+
+
+/* RED GLOW SAU CHỮ S */
+
+.logo span::after{
+    content:"S";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:-1;
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:60px;
+
+    font-weight:900;
+
+    font-style:normal;
+
+    color:var(--red);
+
+    filter:blur(10px);
+
+    opacity:.8;
+
+    pointer-events:none;
+}
+
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+@keyframes logoRotate{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes logoRotateReverse{
+    from{
+        transform:rotate(360deg);
+    }
+
+    to{
+        transform:rotate(0deg);
+    }
+}
+
+
+/* ==============================
+   TITLE
+============================== */
+
+.title{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:34px;
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    line-height:1.2;
+
+    margin-bottom:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ff3158,
+            #ffffff
+        );
+
+    background-size:200% auto;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:titleShine 4s linear infinite;
+}
+
+@keyframes titleShine{
+    to{
+        background-position:200% center;
+    }
+}
+
+.subtitle{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    color:var(--gray);
+
+    font-size:13px;
+
+    letter-spacing:1px;
+
+    margin-bottom:31px;
+}
+
+
+/* ==============================
+   KEY BOX
+============================== */
+
+.key-container{
+    position:relative;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,.25);
+}
+
+.key-container::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:20px;
+    bottom:20px;
+
+    width:3px;
+
+    border-radius:10px;
+
+    background:var(--red);
+
+    box-shadow:
+        0 0 10px var(--red),
+        0 0 22px rgba(255,23,68,.7);
+}
+
+.key-label{
+    display:block;
+
+    margin-left:5px;
+    margin-bottom:10px;
+
+    color:#77777f;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.key{
+    position:relative;
+
+    margin-left:5px;
+
+    padding:16px;
+
+    border-radius:13px;
+
+    background:#050506;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-family:monospace;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    line-height:1.6;
+
+    word-break:break-word;
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.65);
+}
+
+.key::after{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:65%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,23,68,.13),
+            transparent
+        );
+
+    animation:keyShine 4s infinite;
+}
+
+@keyframes keyShine{
+    0%{
+        left:-100%;
+    }
+
+    55%,100%{
+        left:150%;
+    }
+}
+
+
+/* ==============================
+   BUTTON
+============================== */
+
+.copy-btn{
+    position:relative;
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #d00035
+        );
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+    box-shadow:
+        0 10px 30px rgba(255,0,55,.25);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.copy-btn::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:45%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.6s;
+}
+
+.copy-btn:hover::before{
+    left:150%;
+}
+
+.copy-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 45px rgba(255,0,55,.38);
+}
+
+.copy-btn:active{
+    transform:scale(.97);
+}
+
+
+/* ==============================
+   STATUS
+============================== */
+
+.status{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:22px;
+
+    color:#777;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    letter-spacing:1.5px;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    box-shadow:
+        0 0 8px var(--red),
+        0 0 18px rgba(255,23,68,.8);
+
+    animation:statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse{
+    50%{
+        transform:scale(1.6);
+        opacity:.45;
+    }
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
+
+.footer{
+    margin-top:24px;
+
+    padding-top:17px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.055);
+
+    text-align:center;
+
+    color:#44444a;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:520px){
+
+    body{
+        overflow:auto;
+        padding:20px 0;
+    }
+
+    .wrapper{
+        width:92%;
+    }
+
+    .card{
+        padding:34px 20px 26px;
+        border-radius:25px;
+    }
+
+    .logo{
+        width:94px;
+        height:94px;
+        border-radius:27px;
+    }
+
+    .logo span,
+    .logo span::after{
+        font-size:52px;
+    }
+
+    .title{
+        font-size:26px;
+        letter-spacing:1px;
+    }
+
+    .subtitle{
+        font-size:11px;
+    }
+
+    .key-container{
+        padding:19px;
+    }
+
+    .key{
+        font-size:12px;
+    }
+
+    .copy-btn{
+        padding:15px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="background">
+
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <div class="grid"></div>
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+    <div class="particle p8"></div>
+    <div class="particle p9"></div>
+    <div class="particle p10"></div>
+
+</div>
+
+
+<div class="wrapper">
+
+    <div class="card">
+
+        <!-- LOGO S -->
+        <div class="logo-area">
+
+            <div class="logo">
+
+                <div class="logo-ring"></div>
+                <div class="logo-ring-two"></div>
+
+                <span>S</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+        <h1 class="title">
+            Sources Hub Key
+        </h1>
+
+        <div class="subtitle">
+            Secure Access Key System
+        </div>
+
+
+        <!-- KEY -->
+        <div class="key-container">
+
+            <span class="key-label">
+                Your Access Key
+            </span>
+
+            <div class="key" id="key">
+                SourcesHubKeyJskwo - Hsksowownwkowkeneb
+            </div>
+
+            <button
+                class="copy-btn"
+                id="copyButton"
+                onclick="copyKey()"
+            >
+                COPY KEY
+            </button>
+
+        </div>
+
+
+        <!-- STATUS -->
+        <div class="status">
+
+            <div class="status-dot"></div>
+
+            KEY SYSTEM ONLINE
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="footer">
+            SOURCES HUB • ACCESS SYSTEM
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function copyKey(){
+
+    const key =
+        "SourcesHubKeyJskwo - Hsksowownwkowkeneb";
+
+    const button =
+        document.getElementById("copyButton");
+
+
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
+
+        navigator.clipboard
+        .writeText(key)
+        .then(showCopied)
+        .catch(fallbackCopy);
+
+    }else{
+
+        fallbackCopy();
+
+    }
+
+
+    function showCopied(){
+
+        button.innerHTML =
+            "✓  KEY COPIED";
+
+        setTimeout(function(){
+
+            button.innerHTML =
+                "COPY KEY";
+
+        },1800);
+
+    }
+
+
+    function fallbackCopy(){
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = key;
+
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+
+        textarea.focus();
+        textarea.select();
+
+        try{
+
+            document.execCommand("copy");
+
+            showCopied();
+
+        }catch(error){
+
+            button.innerHTML =
+                "COPY FAILED";
+
+            setTimeout(function(){
+
+                button.innerHTML =
+                    "COPY KEY";
+
+            },1800);
+
+        }
+
+        textarea.remove();
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
